@@ -37,24 +37,15 @@ export function MovieAdditionForm() {
   // const [content, setContent] = useState("");
   // const [trailer, setTrailer] = useState("");
   const navigate = useNavigate();
-  // const addMovie = () => {
-    // const newMovie = {
-    //   namee: name,
-    //   imgg: image,
-    //   ratingg: rating,
-    //   contentt: content,
-    //   trailerr: trailer
-    // };
-  //   addMovieAPI(newMovie);
-  // };
+ 
 
   function addMovieAPI(newMovie){
-    fetch(`${API}/movies`,
-      {method:"POST",
+
+    fetch(`${API}/movies/addmovies`,{
+      method:"POST",
       body : JSON.stringify(newMovie),
       headers : {"Content-Type":"application/json"}
-      }
-    ).then(()=>navigate("/movies"))
+      }).then(()=>navigate("/movies"))
       // .then((data)=>data.json())
       // .then((mvs)=>setmovieInfo(mvs));
   }
