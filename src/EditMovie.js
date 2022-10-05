@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useFormik} from "formik";
@@ -48,25 +48,9 @@ export function EditMovie() {
 
 
   function MovieEditCore({movie}){
-    // const [name, setName] = useState(movie.namee);
-    // const [image, setImage] = useState(movie.imgg);
-    // const [rating, setRating] = useState(movie.ratingg);
-    // const [content, setContent] = useState(movie.contentt);
-    // const [trailer, setTrailer] = useState(movie.trailerr);
 
-    // const editMovie = () => {
-    //   const editedMovie = {
-    //     namee: name,
-    //     imgg: image,
-    //     ratingg: rating,
-    //     contentt: content,
-    //     trailerr: trailer
-    //   };
-    //   // setmovieInfo([...movieInfo, newMovie]);
-    //   // console.log(newMovie);
-    //   editMovieAPI(editedMovie);
-    // };
-// }
+
+
 
     const {handleBlur,handleChange,handleSubmit,values,touched,errors} = useFormik({
       initialValues : {
@@ -96,7 +80,8 @@ export function EditMovie() {
       ).then(()=>navigate("/movies"))
     }
     return (
-      <form onSubmit={handleSubmit} className="formSection">
+        localStorage.getItem("user") ? 
+        <form onSubmit={handleSubmit} className="formSection">
         
         <TextField label="Name" variant="standard"  name="namee" value={values.namee} onChange={handleChange} onBlur = {handleBlur}  error={touched.namee && errors.namee} id="filled-error-helper-text" helperText={touched.namee && errors.namee}/>
         {/* {touched.namee && errors.namee} */}
@@ -109,6 +94,7 @@ export function EditMovie() {
         <TextField label="Trailer" variant="standard" className="trailer input" name="trailerr" value={values.trailerr} onChange={handleChange} onBlur = {handleBlur}  error={touched.trailerr && errors.trailerr}  id="filled-error-helper-text" helperText={touched.trailerr && errors.trailerr}/>
         {/* {touched.trailerr && errors.trailerr} */}
         <Button variant="outlined" className="addMovieButton" type="submit">Save</Button>
-      </form>
+      </form> :
+      <Navigate to="/login" />
     );
   }

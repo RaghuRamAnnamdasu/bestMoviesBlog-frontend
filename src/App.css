@@ -219,6 +219,8 @@
   margin-bottom: 20px;
 }
 
-/* .MuiFormHelperText-root {
-  color:rgba(255,0,0,0.5) !important;
-} */
+.endButtons{
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}

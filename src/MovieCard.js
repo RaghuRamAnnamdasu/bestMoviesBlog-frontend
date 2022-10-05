@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Counter } from './Counter';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import KeyboardControlKeyIcon from '@mui/icons-material/KeyboardControlKey';
@@ -72,8 +72,9 @@ export function MovieCard({ img, name, rating, content, id, mveinf, setmovieInfo
             size="small" 
             className = "deleteIcon"
             color = "error" onClick = {()=> {
-              fetch(`${API}/movies/${id}`,{method:"DELETE"})
-              .then(()=>getMovieAPI());
+              localStorage.getItem("user") ? 
+              fetch(`${API}/movies/${id}`,{method:"DELETE"}).then(()=>getMovieAPI()) : 
+              navigate("/login");
           }}>
             <DeleteIcon fontSize="small !important" />
           </IconButton>

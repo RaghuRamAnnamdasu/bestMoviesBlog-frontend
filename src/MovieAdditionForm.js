@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useFormik} from "formik";
@@ -56,6 +56,7 @@ export function MovieAdditionForm() {
 
 
   return (
+    localStorage.getItem("user") ? 
     <form onSubmit={handleSubmit} className="formSection">
       
       <TextField label="Name" variant="standard"  name="namee" value={values.namee} onChange={handleChange} onBlur = {handleBlur}  error={touched.namee && errors.namee} id="filled-error-helper-text" helperText={touched.namee && errors.namee}/>
@@ -69,6 +70,7 @@ export function MovieAdditionForm() {
       <TextField label="Trailer" variant="standard" className="trailer input" name="trailerr" value={values.trailerr} onChange={handleChange} onBlur = {handleBlur}  error={touched.trailerr && errors.trailerr}  id="filled-error-helper-text" helperText={touched.trailerr && errors.trailerr}/>
       {/* {touched.trailerr && errors.trailerr} */}
       <Button variant="outlined" className="addMovieButton" type="submit">Add Movie</Button>
-    </form>
+    </form> :
+    <Navigate to="/login" />
   );
 }
